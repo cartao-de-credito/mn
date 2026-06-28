@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Operação Shawn Mendes: Contra os Israelenses!!!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Fredoka',sans-serif;
+}
+
+body{
+min-height:100vh;
+background: linear-gradient(180deg, #ffb3e6 0%, #ff99dd 35%, #ff99f0 70%, #ffe6f7 100%);
+overflow-x:hidden;
+}
+
+/* BOLHAS */
+body::before{
+content:"";
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background-image:
+radial-gradient(circle, rgba(255,255,255,.9) 2px, transparent 3px),
+radial-gradient(circle, rgba(255,200,220,.6) 4px, transparent 5px);
+background-size: 120px 120px, 220px 220px;
+animation:bubbles 25s linear infinite;
+}
+
+@keyframes bubbles{
+from{ transform:translateY(0px); }
+to{ transform:translateY(-150px); }
+}
+
+/* JANELA */
+.window{
+width:min(1200px,95%);
+margin:30px auto;
+background:rgba(255,230,245,.35);
+backdrop-filter:blur(18px);
+border-radius:30px;
+border:2px solid rgba(255,200,230,.95);
+box-shadow: 0 0 60px rgba(255,100,200,.8), 0 0 120px rgba(255,150,220,.9), 0 0 180px rgba(255,80,180,.6);
+overflow:hidden;
+}
+
+/* BARRA */
+.titlebar{
+height:40px;
+display:flex;
+align-items:center;
+padding-left:20px;
+font-weight:bold;
+color:#fff;
+background: linear-gradient(#ff99dd, #ff77cc, #ff55bb);
+text-shadow: 0 0 15px rgba(255,50,150,1), 0 0 30px rgba(255,100,180,.8);
+}
+
+/* HEADER */
+.header{
+text-align:center;
+padding:50px 25px;
+background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,150,200,.2));
+}
+
+.avatar{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid rgba(255,230,245,.98);
+box-shadow: 0 0 40px rgba(255,150,200,.95), 0 0 80px rgba(255,100,180,.9), 0 0 120px #ff77cc;
+margin-bottom:20px;
+}
+
+.header h1{
+font-size:3rem;
+color:#ffe6f7;
+text-shadow: 0 0 20px rgba(255,100,150,1), 0 0 40px rgba(255,77,200,1), 0 0 60px rgba(255,50,180,.8);
+}
+
+.subtitle{
+margin-top:10px;
+font-size:1.2rem;
+color:#c2067a;
+}
+
+.intro{
+padding:25px;
+text-align:center;
+font-size:1.1rem;
+color:#a70060;
+}
+
+/* CARDS */
+.content{
+display:grid;
+grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+padding:25px;
+}
+
+.card{
+background: rgba(255,230,245,.55);
+border-radius:25px;
+overflow:hidden;
+box-shadow: 0 0 35px rgba(255,100,200,.65), 0 0 70px rgba(255,80,190,.45);
+}
+
+.chatprint{
+width:100%;
+height:250px;
+object-fit:cover;
+cursor:pointer;
+transition:.3s;
+border-bottom:2px solid rgba(255,150,200,.5);
+}
+
+.chatprint:hover{ transform:scale(1.03); }
+
+.card-content{ padding:18px; }
+.card-content h2{ color:#d70085; margin-bottom:10px; }
+.card-content p{ color:#5a1a40; }
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.92);
+z-index:9999;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(10px);
+}
+
+.modal img{
+max-width:95%;
+max-height:95%;
+border-radius:20px;
+box-shadow: 0 0 50px rgba(255,150,200,1), 0 0 100px rgba(255,100,180,.95), 0 0 150px rgba(255,77,200,.8);
+}
+
+.close{
+position:absolute;
+top:15px;
+right:30px;
+font-size:50px;
+color:white;
+cursor:pointer;
+}
+
+/* COMENTÁRIOS */
+.forum{ padding:30px; }
+.forum h2{ color:#d70085; margin-bottom:10px; }
+
+input, textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:2px solid rgba(255,150,200,.4);
+border-radius:15px;
+background: rgba(255,240,250,.92);
+box-shadow: inset 0 0 15px rgba(255,200,220,.3);
+}
+
+textarea{ height:120px; resize:none; }
+
+button{
+margin-top:12px;
+padding:12px 24px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+color:#fff;
+font-weight:bold;
+background: linear-gradient(#ff99dd, #ff77cc);
+box-shadow: 0 0 30px rgba(255,100,200,.9), 0 0 60px rgba(255,80,200,.7), 0 0 90px rgba(255,50,180,.5);
+}
+
+button:hover{ transform:scale(1.05); }
+
+.post{
+background: rgba(255,240,250,.92);
+padding:15px;
+margin-top:15px;
+border-radius:15px;
+border-left:4px solid rgba(255,100,180,.5);
+box-shadow: 0 0 20px rgba(255,150,200,.2);
+}
+
+.username{ font-weight:bold; color:#d70085; margin-bottom:5px; }
+.footer{ text-align:center; padding:60px 25px; color:#c2067a; }
+
+.footer h3{ 
+margin-bottom:30px; 
+font-size:1.5rem;
+color:#d70085;
+}
+
+.credits{
+display:flex;
+justify-content:center;
+gap:60px;
+flex-wrap:wrap;
+}
+
+.credit{
+text-align:center;
+}
+
+.credit img{
+width:100px;
+height:100px;
+border-radius:50%;
+margin-bottom:15px;
+box-shadow: 0 0 25px rgba(255,100,200,.4);
+}
+
+.credit p{
+color:#c2067a;
+font-weight:bold;
+}
+
+/* MÚSICA */
+.music-section{ padding:30px; }
+.music-section h2{ color:#d70085; margin-bottom:20px; font-size:1.8rem; }
+
+.music-grid{
+display:grid;
+grid-template-columns: repeat(2, 1fr);
+gap:30px;
+margin-bottom:20px;
+}
+
+.music-item{
+background: rgba(255,230,245,.5);
+border-radius:20px;
+padding:15px;
+box-shadow: 0 0 25px rgba(255,100,200,.35);
+}
+
+.music-item h3{
+color:#d70085;
+margin-bottom:12px;
+font-size:1.1rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="window">
+
+    <div class="titlebar">
+        Operação Shawn Mendes - Caça a Israelenses:
+    </div>
+
+    <div class="header">
+        <img src="polar.webp" class="avatar">
+        <h1> • OPERAÇÃO SHAWN MENDES: • </h1>
+        <h1>
+            <img src="https://th.bing.com/th?id=OIF.F3BiNS0pA%2bKwqWVJUHdpZA&rs=1&pid=ImgDetMain&o=7&rm=3" alt="" width="50"> • CONTRA POLARES ISRAELENSES! •  <img src="https://th.bing.com/th?id=OIF.F3BiNS0pA%2bKwqWVJUHdpZA&rs=1&pid=ImgDetMain&o=7&rm=3" alt="" width="50">
+        </h1>
+        <div class="subtitle">Provas criminais contra Polarxxw..</div>
+    </div>
+
+    <div class="intro">
+        Clique em qualquer print para abrir tudo completo e ver todos os detalhes da conversa, vendo os crimes cibernéticos do nosso israelense.
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <img src="r1.png" class="chatprint" onclick="openImage(this.src)">
+            <div class="card-content">
+                <h2>Crime 1</h2>
+                <p>Clique e veja a atrocidade do ano..</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="r2.png" class="chatprint" onclick="openImage(this.src)">
+            <div class="card-content">
+                <h2>Crime 2</h2>
+                <p>Clique e veja a atrocidade do ano..</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="r3.png" class="chatprint" onclick="openImage(this.src)">
+            <div class="card-content">
+                <h2>Crime 3:</h2>
+                <p>Clique e veja a atrocidade do ano..</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="r4.png" class="chatprint" onclick="openImage(this.src)">
+            <div class="card-content">
+                <h2>Crime 4:</h2>
+                <p>Clique e veja a atrocidade do ano..</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="r5.png" class="chatprint" onclick="openImage(this.src)">
+            <div class="card-content">
+                <h2>Crime 5:</h2>
+                <p>Uma vez que fala bem do Afonso, mas ele virou um analfabeto..</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="r6.png" class="chatprint" onclick="openImage(this.src)">
+            <div class="card-content">
+                <h2>Crime 6:</h2>
+                <p>Clique e veja a atrocidade do ano...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="forum">
+        <h2>Comentários</h2>
+        <input id="name" placeholder="Seu nome">
+        <textarea id="comment" placeholder="Compartilhe sua opinião..."></textarea>
+        <button onclick="postComment()">Publicar</button>
+        <div id="posts"></div>
+    </div> 
+
+    <div class="music-section">
+        <h2>🎵 Nossas Músicas Favoritas:</h2>
+        <div class="music-grid">
+            <div class="music-item">
+                <h3>DJ Oreia pwp </h3>
+                <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/6kaWah1Acn1dtNjAy6sm1p?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+            </div>
+
+            <div class="music-item">
+                <h3>Mc Ryan SP >w< </h3>
+                <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/4x2y9fbjXx3LXLqll6dphW?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+            </div>
+
+            <div class="music-item">
+                <h3>Nicki Minaj &lt;3</h3>
+                <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/741UUVE2kuITl0c6zuqqbO?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+            </div>
+
+            <div class="music-item">
+                <h3> Drake X3</h3>
+                <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/4eE16RJFDKf2WxBTqqfylu?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+            </div>
+
+            <div class="music-item">
+                <h3>Taylor SWIFT UwU</h3>
+                <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/35rdVq36LMHQX0Suw9a6tK?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+            </div>
+
+            <div class="music-item">
+                <h3>Sombr O.o</h3>
+                <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/7qjZnBKE73H4Oxkopwulqe?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="footer">
+        <h3>Feito por:</h3>
+        <div class="credits">
+            <div class="credit">
+                <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-35087BFE2BAAD09693F7BCE0F775C6F0-Png/150/150/AvatarHeadshot/Webp/noFilter">
+                <p>Isabella (covenrivals) </p>
+            </div>
+            <div class="credit">
+                <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-8467EE67BDDDF2634CC8CE1E41D634CA-Png/150/150/AvatarHeadshot/Webp/noFilter">
+                <p>Afonso (Amrazinho2010) </p>
+            </div>
+        </div>
+    </div>
+
+</div> 
+
+<div id="imageModal" class="modal" style="display: none;" onclick="closeImage()">
+    <span class="close">&times;</span>
+    <img id="modalImg">
+</div>
+
+<script>
+function openImage(src){
+    document.getElementById("imageModal").style.display = "flex";
+    document.getElementById("modalImg").src = src;
+}
+
+function closeImage(){
+    document.getElementById("imageModal").style.display = "none";
+}
+
+function getPosts(){
+    return JSON.parse(localStorage.getItem("posts") || "[]");
+}
+
+function savePosts(posts){
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+function render(){
+    let area = document.getElementById("posts");
+    area.innerHTML = "";
+    getPosts().forEach(p => {
+        let div = document.createElement("div");
+        div.className = "post";
+        div.innerHTML = `
+            <div class="username">${p.name}</div>
+            <p>${p.text}</p>
+        `;
+        area.appendChild(div);
+    });
+}
+
+function postComment(){
+    let name = document.getElementById("name").value || "Anônimo";
+    let text = document.getElementById("comment").value;
+    if(!text) return;
+
+    let posts = getPosts();
+    posts.push({ name: name, text: text });
+    savePosts(posts);
+    document.getElementById("comment").value = "";
+    render();
+}
+
+// === SISTEMA DE ÁUDIO INVISÍVEL POR CLIQUE ===
+
+// NOTA: Para usar sua própria música local, mude o link abaixo para o nome do seu arquivo (ex: "suamusica.mp3")
+const musicaDeFundo = new Audio("barbiegrilo.mp3");
+musicaDeFundo.loop = true;
+musicaDeFundo.volume = 0.5;
+
+function darPlayNaMusica() {
+    if (musicaDeFundo.paused) {
+        musicaDeFundo.play()
+        .then(() => {
+            console.log("Música iniciada!");
+            // Remove os escutadores para não re-executar a cada clique
+            document.removeEventListener('click', darPlayNaMusica);
+            document.removeEventListener('keydown', darPlayNaMusica);
+        })
+        .catch(error => {
+            console.log("Navegador impediu o autoplay comercial:", error);
+        });
+    }
+}
+
+// Ouve interações globais na página para destravar o som
+document.addEventListener('click', darPlayNaMusica);
+document.addEventListener('keydown', darPlayNaMusica);
+
+// Inicializa a renderização de posts
+render();
+</script>
+
+</body>
+</html>
